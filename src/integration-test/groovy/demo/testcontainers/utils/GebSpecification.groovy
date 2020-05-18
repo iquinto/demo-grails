@@ -23,8 +23,8 @@ abstract class GebSpecification extends GebReportingSpec{
 
     protected static final PostgreSQLContainer POSTGRES = new PostgreSQLContainer()
             .withDatabaseName("demo")
-            .withUsername("isagani")
-            .withPassword("isagani")
+            .withUsername("whatthefuck")
+            .withPassword("whatthefuck")
 
     /**
      *  by: iquinto

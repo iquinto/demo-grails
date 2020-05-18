@@ -22,8 +22,8 @@ abstract class BaseContainerSpecification extends Specification{
 
     protected static final PostgreSQLContainer POSTGRES = new PostgreSQLContainer()
             .withDatabaseName("demo")
-            .withUsername("isagani")
-            .withPassword("isagani")
+            .withUsername("whatthefuck")
+            .withPassword("whatthefuck")
 
     /**
      *  by: iquinto
