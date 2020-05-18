@@ -39,6 +39,7 @@ abstract class GebSpecification extends GebReportingSpec{
          'JDBC_CONNECTION_DRIVER': POSTGRES.getDriverClassName(),
          'JDBC_CONNECTION_DIALECT': 'org.hibernate.dialect.PostgresSQLDialect'   // for postgres Database
         ].each { k, v ->
+            println "Datasource >>>> $k :  $v"
             System.setProperty(k, v)
         }
 
