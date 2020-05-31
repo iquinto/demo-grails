@@ -108,7 +108,7 @@ environments:
             password: postgres
             dialect: org.hibernate.dialect.PostgresSQLDialect
             dbCreate: update
-            url: jdbc:postgresql://localhost:5432/demo_grails
+            url: jdbc:postgresql://localhost:5432/demo_grails # local DB
             logSql: true
     test:
         dataSource:
