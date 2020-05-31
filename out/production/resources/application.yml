@@ -108,18 +108,17 @@ environments:
             password: postgres
             dialect: org.hibernate.dialect.PostgresSQLDialect
             dbCreate: update
-            url: jdbc:postgresql://localhost:5432/jukebox
+            url: jdbc:postgresql://localhost:5432/demo_grails
             logSql: true
     test:
         dataSource:
-            dbCreate: create-drop
+            #dbCreate: create-drop
             #url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             url: '${JDBC_CONNECTION_URL}'
             username: '${JDBC_CONNECTION_USER}'
             password: '${JDBC_CONNECTION_PASSWORD}'
             driverClassName: '${JDBC_CONNECTION_DRIVER}'
             dialect: '${JDBC_CONNECTION_DIALECT}'  #ASSIGN DYNAMICALLY DUE TO TEST CONFIGURATIONS
-            logSql: true
     production:
         dataSource:
             dbCreate: none
