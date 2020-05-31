@@ -27,6 +27,7 @@ environments {
     
     // run via “./gradlew -Dgeb.env=firefoxHeadless iT”
     firefoxHeadless {
+
         driver = {
             FirefoxOptions o = new FirefoxOptions()
             o.addArguments('-headless')

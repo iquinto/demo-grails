@@ -24,8 +24,8 @@ import spock.lang.Specification
 
 @CompileStatic
 abstract class SharedH2DatabaseControllerSpecification extends Specification{
-    private static final String H2_BACKUP_LOCATION = 'src/integration-test/resources/files/h2.sql'
-    private static final String URL = 'jdbc:h2:file:./src/integration-test/resources/files/testH2DB;AUTO_SERVER=TRUE'
+    private static final String H2_BACKUP_LOCATION = 'src/integration-test/resources/files/base.sql'
+    private static final String URL = 'jdbc:h2:file:./src/integration-test/resources/db/testH2DB;MODE=PostgreSQL;AUTO_SERVER=TRUE'
     private static final String USER = 'sa'
     private static final String PASSWORD = ''
     private static final String DRIVERCLASSNAME = 'org.h2.Driver'

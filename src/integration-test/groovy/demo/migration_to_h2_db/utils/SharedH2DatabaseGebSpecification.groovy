@@ -11,8 +11,8 @@ import org.testcontainers.spock.Testcontainers
  */
 @Testcontainers
 abstract class SharedH2DatabaseGebSpecification extends GebReportingSpec{
-    private static final String H2_BACKUP_LOCATION = 'src/integration-test/resources/files/h2.sql'
-    private static final String URL = 'jdbc:h2:file:./src/integration-test/resources/files/testH2DB;AUTO_SERVER=TRUE'
+    private static final String H2_BACKUP_LOCATION = 'src/integration-test/resources/files/base.sql'
+    private static final String URL = 'jdbc:h2:file:./src/integration-test/resources/db/testH2DB;MODE=PostgreSQL;AUTO_SERVER=TRUE'
     private static final String USER = 'sa'
     private static final String PASSWORD = ''
     private static final String DRIVERCLASSNAME = 'org.h2.Driver'
@@ -31,14 +31,15 @@ abstract class SharedH2DatabaseGebSpecification extends GebReportingSpec{
 
     void cleanupSpec() {
         println "Cleaning  H2 database."
-        Sql sql = connectToSql()
-        sql.execute("DROP ALL OBJECTS")
+        new File('src/integration-test/resources/db/testH2DB.mv.db').deleteDir()
+
     }
 
     private void loadH2DB() {
         println "Loading H2 from backup location."
         Sql sql = connectToSql()
         sql.execute("RUNSCRIPT FROM ?", [H2_BACKUP_LOCATION] as List<Object>)
+        sql.close()
     }
 
     private Sql connectToSql() {

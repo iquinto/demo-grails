@@ -1,6 +1,7 @@
 package demo.migration_to_h2_db.utils
 
 import groovy.sql.Sql
+import spock.lang.Shared
 import spock.lang.Specification
 
 /**
@@ -8,11 +9,14 @@ import spock.lang.Specification
  *  configuration of tescontainers (DB) for IT
  */
 abstract class SharedH2DatabaseSpecification extends Specification{
-    private static final String H2_BACKUP_LOCATION = 'src/integration-test/resources/files/h2.sql'
-    private static final String URL = 'jdbc:h2:file:./src/integration-test/resources/files/testH2DB;AUTO_SERVER=TRUE'
+    private static final String H2_BACKUP_LOCATION = 'src/integration-test/resources/files/base.sql'
+    private static final String URL = 'jdbc:h2:file:./src/integration-test/resources/db/testH2DB;MODE=PostgreSQL;AUTO_SERVER=TRUE'
     private static final String USER = 'sa'
     private static final String PASSWORD = ''
     private static final String DRIVERCLASSNAME = 'org.h2.Driver'
+
+    @Shared Sql sql
+
 
     void setupSpec() {
         loadH2DB()
@@ -27,14 +31,15 @@ abstract class SharedH2DatabaseSpecification extends Specification{
     }
 
     void cleanupSpec() {
-        println "Cleaning  H2 database."
         Sql sql = connectToSql()
         sql.execute("DROP ALL OBJECTS")
+        sql.close()
+        new File('src/integration-test/resources/db').deleteDir()
     }
 
     private void loadH2DB() {
         println "Loading H2 from backup location."
-        Sql sql = connectToSql()
+        sql = connectToSql()
         sql.execute("RUNSCRIPT FROM ?", [H2_BACKUP_LOCATION] as List<Object>)
     }
 
